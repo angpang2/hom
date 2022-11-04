@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
     <title>도그쿡 | dogcook</title>
     <link rel="stylesheet" href="/resources/style/reset.css" type="text/css">
-    <!--<link rel="stylesheet" href="style/style1.css" type="text/css">-->
     <link rel="stylesheet" href="/resources/style/style2.css" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet" type="text/css"><!--폰트-->
     <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js"></script>
@@ -24,7 +23,7 @@
             <div id="my_menu"><a href="#"><img src="/resources/img/my_icon.png" alt="my_menu"></a></div>
             <ul><!--언어영역-->
                 <li><a href="/login">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="/save">회원가입</a></li>
                 <li><a href="#">회원목록조회</a></li>
                 <li><a href="#">장바구니</a></li>
                 <li><a href="#">고객센터</a></li>
