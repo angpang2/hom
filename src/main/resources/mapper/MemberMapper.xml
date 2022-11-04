@@ -5,5 +5,15 @@
 
 <mapper namespace="Member">
 
+    <insert id="save" parameterType="member" useGeneratedKeys="true" keyProperty="id">
+        insert into member_table(memberEmail, memberPassword, memberName, memberAddress , memberGender ,memberMobile,memberProfile)
+        values (#{memberEmail}, #{memberPassword}, #{memberName}, #{memberAddress},#{memberGender},#{memberMobile},#{memberProfile})
+    </insert>
+
+    <insert id="saveFile" parameterType="member">
+        insert into member_file_table(originalFileName, storedFileName, memberId)
+        values (#{originalFileName} ,#{storedFileName} ,#{id})
+    </insert>
+
 
 </mapper>
