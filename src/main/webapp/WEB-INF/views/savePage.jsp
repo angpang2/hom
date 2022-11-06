@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+  <link rel="stylesheet" href="/resources/css/bootstrap.css">
+  <script src="/resources/js/jqury.js"></script>
   <title>회원가입 화면</title>
 
   <style>
@@ -44,9 +46,12 @@
   <form enctype="multipart/form-data" method="post" action="/save">
     <table>
       <tr>
-        <td id="memberEmail">이메일</td>
+        <td>이메일</td>
         <td>
-          <input type="text" name="memberEmail" maxlength="20">
+          <div class="input-group-sm mb-3">
+          <input type="text" name="memberEmail" maxlength="20"  id="memberEmail">
+            <input type="button" value="중복확인" onclick="emailCheck()">
+          </div>
         </td>
       </tr>
       <tr>
@@ -97,4 +102,32 @@
   </form>
 </div>
 </body>
+<script>
+  const emailCheck = () => {
+    const memberEmail = document.getElementById("memberEmail").value;
+    $.ajax({
+      type: "get",
+      url: "/emailCheck",
+      data: {
+        value1: memberEmail
+      },
+      dataType: "text",
+      success: function (result) {
+        console.log("성공");
+        console.log(result);
+        if (result == "yes") {
+              alert("회원가입가능")
+        } else {
+              alert("이미존재하는 이메일 입니다.")
+        }
+
+      },
+      error: function () {
+        console.log("실패")
+      }
+
+    })
+
+  }
+</script>
 </html>

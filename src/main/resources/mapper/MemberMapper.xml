@@ -15,5 +15,10 @@
         values (#{originalFileName} ,#{storedFileName} ,#{id})
     </insert>
 
+    <select id="emailCheck" parameterType="String" resultType="member">
+        select * from member_table where memberEmail=#{memberEmail}
+    </select>
+
+
 
 </mapper>

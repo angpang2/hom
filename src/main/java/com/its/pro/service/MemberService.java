@@ -39,15 +39,12 @@ public class MemberService {
         }
 
 
-
-
-
-
-
-
-
+    public MemberDTO emailCheck(String memberEmail) {
+        System.out.println("서비스넘어옴");
+        return memberRepository.emailCheck(memberEmail);
 
     }
+}
 
 
 

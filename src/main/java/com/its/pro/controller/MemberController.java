@@ -4,9 +4,7 @@ import com.its.pro.DTO.MemberDTO;
 import com.its.pro.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -31,6 +29,17 @@ public class MemberController {
         System.out.println("memberDTO = " + memberDTO);
         memberService.save(memberDTO);
        return "index";
+    }
+
+    @GetMapping("/emailCheck")
+    public @ResponseBody String mailCheck(@RequestParam("value1")String memberEmail){
+        System.out.println(memberEmail);
+        MemberDTO result =memberService.emailCheck(memberEmail);
+        if(result==null){
+            return "yes";
+        }else {
+            return "no";
+        }
     }
 
 
