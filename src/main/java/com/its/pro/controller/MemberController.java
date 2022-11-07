@@ -73,6 +73,14 @@ public String login(){
     }
 
 
+    @PostMapping("/update")
+    public String update(@ModelAttribute MemberDTO memberDTO){
+        System.out.println("수정DTO넘어왔음 = " + memberDTO);
+        memberService.update(memberDTO);
+        return "redirect:/logout";
+    }
+
+
 
 
 

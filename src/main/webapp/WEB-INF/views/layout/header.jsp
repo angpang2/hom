@@ -16,7 +16,7 @@
 
 <style>
     #profile{
-        margin-left: 850px;
+        margin-left: 800px;
     }
 </style>
 
@@ -51,6 +51,9 @@
                         </c:otherwise>
                     </c:choose>
                 <li><a href="/save">회원가입</a></li>
+                <c:if test="${sessionScope.member.memberEmail != null}">
+                    <li><a href="/mypage">마이페이지</a></li>
+                </c:if>
                 <li><a href="#">장바구니</a></li>
                 <li><a href="#">고객센터</a></li>
             </ul>

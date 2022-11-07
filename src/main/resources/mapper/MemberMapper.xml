@@ -27,6 +27,11 @@
         select * from member_file_table where memberId = #{id}
     </select>
 
+    <update id="update" parameterType="member">
+        update member_table set memberName = #{memberName} ,  memberPassword = #{memberPassword} , memberAddress = #{memberAddress} , memberMobile =#{memberMobile}  where id = #{id}
+    </update>
+
+
 
 
 

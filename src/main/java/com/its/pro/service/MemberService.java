@@ -48,6 +48,10 @@ public class MemberService {
     public MemberDTO loginCheck(MemberDTO memberDTO) {
         return memberRepository.loginCheck(memberDTO);
     }
+
+    public void update(MemberDTO memberDTO) {
+        memberRepository.update(memberDTO);
+    }
 }
 
 
