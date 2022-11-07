@@ -56,11 +56,10 @@ public String login(){
         MemberDTO result = memberService.loginCheck(memberDTO);
         System.out.println(result);
         if(result != null){
-            System.out.println("memberDTO = " + memberDTO + ", session = " + session);
             session.setAttribute("member",result);
             return "ok";
         }else {
-            System.out.println("memberDTO = " + memberDTO + ", session = " + session);
+
             return "no";
         }
 

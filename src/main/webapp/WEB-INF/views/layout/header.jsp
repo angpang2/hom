@@ -14,6 +14,13 @@
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
+<style>
+    #profile{
+        margin-left: 850px;
+    }
+</style>
+
+
 </head>
 <body>
 <a href="#" id="top"><img src="/resources/img/top_btn.png" alt="top_btn"></a> <!--top버튼-->
@@ -23,18 +30,27 @@
     <div id="header_bg"> <!--#1366bf-->
         <header><!--1400px-->
             <div id="my_menu"><a href="#"><img src="/resources/img/my_icon.png" alt="my_menu"></a></div>
+            <span id="profile">
+                <c:if test="${sessionScope.member.storedFileName != null}">
+
+                            <img src="${pageContext.request.contextPath}/upload/${sessionScope.member.storedFileName}"
+                                 alt="" width="50" height="50">
+                </c:if>
+                </span>
             <ul><!--언어영역-->
+
 
                  <c:choose>
                         <c:when test="${sessionScope.member.memberEmail != null}">
                             <span>${sessionScope.member.memberEmail}님</span>
+
                             <li><a href="#"  onclick="con()">로그아웃</a> </li>
                         </c:when>
                         <c:otherwise>
                             <li><a href="/login">로그인</a></li>
                         </c:otherwise>
                     </c:choose>
-                <li><a href="#">회원목록조회</a></li>
+                <li><a href="/save">회원가입</a></li>
                 <li><a href="#">장바구니</a></li>
                 <li><a href="#">고객센터</a></li>
             </ul>
@@ -51,23 +67,9 @@
                         <li><a href="#">육포&amp;말이</a></li>
                         <li><a href="#">고품격영양식</a></li>
                         <li><a href="#">간식&amp;케이크</a></li>
-                        <li><a href="#">ACC</a></li>
 
-                        <li id="search_icon2">
-                            <a href="#">
-                                <img src="/resources/img/icon_search.png" alt=""></a>
-                        </li>
 
-                        <li>
-                            <form action="#" method="post" id="search_form">
-                                <fieldset>
-                                    <legend>검색창</legend>
-                                    <p><input type="text" value="검색어를 입력하세요" name="search"></p>
-                                    <p><input type="submit" value="검색" name="search_click"></p>
 
-                                </fieldset>
-                            </form>
-                        </li>
 
                     </ul>
 

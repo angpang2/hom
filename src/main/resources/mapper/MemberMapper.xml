@@ -23,6 +23,10 @@
         Select * from member_table where memberEmail=#{memberEmail} and memberPassword=#{memberPassword}
     </select>
 
+    <select id="file" resultType="member" parameterType="Long">
+        select * from member_file_table where memberId = #{id}
+    </select>
+
 
 
 

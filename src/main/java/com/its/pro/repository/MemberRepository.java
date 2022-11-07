@@ -38,7 +38,15 @@ public class MemberRepository {
         System.out.println("리파지토리까지 넘어옴");
         System.out.println("memberDTO = " + memberDTO);
         MemberDTO result = sql.selectOne("Member.loginCheck",memberDTO);
-        System.out.println("result="+result);
+        Long id = result.getId();
+        MemberDTO file = sql.selectOne("Member.file",id);
+        if(file != null){
+            result.setStoredFileName(file.getStoredFileName());
+            result.setOriginalFileName(file.getOriginalFileName());
+        }
+
+
         return result;
+
+        }
     }
-}
