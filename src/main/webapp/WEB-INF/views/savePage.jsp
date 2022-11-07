@@ -17,7 +17,7 @@
       background-image: url("/resources/img/main_image06.jpg");
     }
     #wrap{
-      width:530px;
+      width:600px;
       margin-left:auto;
       margin-right:auto;
       text-align:center;
@@ -62,11 +62,20 @@
       </tr>
 
       <tr>
-        <td id="memberPassword">비밀번호</td>
+        <td>비밀번호</td>
         <td>
-          <input type="password" name="memberPassword" maxlength="15" class="form-control">
+          <input type="password" name="memberPassword" maxlength="20" class="form-control" id="memberPassword" onblur="passCheck()">
         </td>
       </tr>
+
+      <tr>
+        <td>비밀번호 확인</td>
+        <td>
+          <input type="password" name="memberPassword2" maxlength="20" class="form-control" onblur="passCheck()" id="memberPassword2">
+          <span id="pass_result"></span>
+        </td>
+      </tr>
+
 
 
       <tr>
@@ -98,7 +107,7 @@
       </tr>
     </table>
     <br>
-    <input type="submit" value="가입"/>  <input type="button" value="취소">
+    <input type="submit" value="가입" disabled id="submit"/>  <input type="button" value="취소">
   </form>
 </div>
 </body>
@@ -116,9 +125,13 @@
         console.log("성공");
         console.log(result);
         if (result == "yes") {
+          $("#submit").removeAttr("disabled");
               alert("회원가입가능")
+
         } else {
+          $("#submit").attr("disabled", "disabled");
               alert("이미존재하는 이메일 입니다.")
+
         }
 
       },
@@ -129,5 +142,29 @@
     })
 
   }
+  const passCheck = () => {
+    const pass1 = document.getElementById("memberPassword").value;
+    const pass2 = document.getElementById("memberPassword2").value;
+    const pass_result = document.getElementById("pass_result");
+    console.log(pass2)
+    console.log(pass1)
+    if(pass1 == pass2){
+      pass_result.innerHTML = "비밀번호가 일치합니다."
+      pass_result.style.color = "green";
+      $("#submit").removeAttr("disabled");
+    }else{
+      pass_result.innerHTML = "비밀번호를 확인해주세요"
+      pass_result.style.color = "red";
+      $("#submit").attr("disabled", "disabled");
+    }
+
+
+
+
+  }
+
+
+
+
 </script>
 </html>
