@@ -4,8 +4,10 @@ import com.its.pro.DTO.MemberDTO;
 import com.its.pro.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -46,6 +48,29 @@ public class MemberController {
     @GetMapping("/login")
 public String login(){
         return "loginPage";
+    }
+
+    @PostMapping("/loginCheck")
+    public @ResponseBody String loginCheck(@ModelAttribute MemberDTO memberDTO , HttpSession session){
+        System.out.println("memberDTO = " + memberDTO);
+        MemberDTO result = memberService.loginCheck(memberDTO);
+        System.out.println(result);
+        if(result != null){
+            System.out.println("memberDTO = " + memberDTO + ", session = " + session);
+            session.setAttribute("member",result);
+            return "ok";
+        }else {
+            System.out.println("memberDTO = " + memberDTO + ", session = " + session);
+            return "no";
+        }
+
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "index";
+
     }
 
 

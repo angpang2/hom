@@ -28,8 +28,8 @@
 <jsp:include page="layout/header.jsp" flush="false"></jsp:include>
 
 <div class="container" id="login-form">
-    <input type="text" name="memberEmail" placeholder="이메일입력" class="form-control">
-    <input type="password" name="memberPassword" placeholder="비밀번호입력" class="form-control">
+    <input type="text" name="memberEmail" placeholder="이메일입력" class="form-control" id="memberEmail">
+    <input type="password" name="memberPassword" placeholder="비밀번호입력" class="form-control" id="memberPassword">
     <br>
     <br>
     <input type="button" onclick="loginCheck()" value="로그인">
@@ -38,6 +38,31 @@
 </body>
 <script>
     const loginCheck = () => {
+        const memberEmail = document.getElementById("memberEmail").value
+        const memberPassword = document.getElementById("memberPassword").value
+        $.ajax({
+            type:"post",
+            url:"/loginCheck",
+            data:{
+                memberEmail : memberEmail,
+                memberPassword : memberPassword
+            },
+            dataType: "text",
+
+            success : function (result){
+                if(result == "ok"){
+                    alert("로그인성공")
+                    location.href = "/";
+                }else {
+                    alert("아이디 또는 비밀번호를 다시확인해주세요")
+                }
+
+            },
+            error : function (){
+
+            }
+
+        })
 
     }
 </script>

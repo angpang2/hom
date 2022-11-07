@@ -34,9 +34,11 @@ public class MemberRepository {
     }
 
 
-
-
-
-
-
+    public MemberDTO loginCheck(MemberDTO memberDTO) {
+        System.out.println("리파지토리까지 넘어옴");
+        System.out.println("memberDTO = " + memberDTO);
+        MemberDTO result = sql.selectOne("Member.loginCheck",memberDTO);
+        System.out.println("result="+result);
+        return result;
+    }
 }

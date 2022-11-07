@@ -10,6 +10,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 </head>
@@ -22,8 +24,16 @@
         <header><!--1400px-->
             <div id="my_menu"><a href="#"><img src="/resources/img/my_icon.png" alt="my_menu"></a></div>
             <ul><!--언어영역-->
-                <li><a href="/login">로그인</a></li>
-                <li><a href="/save">회원가입</a></li>
+
+                 <c:choose>
+                        <c:when test="${sessionScope.member.memberEmail != null}">
+                            <span>${sessionScope.member.memberEmail}님</span>
+                            <li><a href="#"  onclick="con()">로그아웃</a> </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="/login">로그인</a></li>
+                        </c:otherwise>
+                    </c:choose>
                 <li><a href="#">회원목록조회</a></li>
                 <li><a href="#">장바구니</a></li>
                 <li><a href="#">고객센터</a></li>
@@ -70,5 +80,15 @@
 </div>
 
 </body>
+<script>
+    const con = () => {
+
+            if (!confirm("정말로 로그아웃 하기겠습니까?")) {
+
+        } else {
+            location.href = "/logout"
+        }
+    }
+</script>
 
 </html>

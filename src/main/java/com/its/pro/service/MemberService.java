@@ -44,6 +44,10 @@ public class MemberService {
         return memberRepository.emailCheck(memberEmail);
 
     }
+
+    public MemberDTO loginCheck(MemberDTO memberDTO) {
+        return memberRepository.loginCheck(memberDTO);
+    }
 }
 
 
