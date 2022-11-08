@@ -40,4 +40,8 @@ public class BoardService {
     public List<BoardDTO> boardList() {
         return boardRepository.boardList();
     }
+
+    public BoardDTO boardDetail(Long id) {
+        return boardRepository.boardDetail(id);
+    }
 }

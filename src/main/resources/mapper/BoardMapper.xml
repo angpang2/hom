@@ -19,6 +19,10 @@
         select * from board_table
     </select>
 
+    <select id="boardDetail" resultType="board" parameterType="Long">
+        select * from board_table where id = #{id}
+    </select>
+
 
 
 </mapper>

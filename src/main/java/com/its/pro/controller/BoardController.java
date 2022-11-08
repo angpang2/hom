@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,5 +34,12 @@ public class BoardController {
     public String boardSave(@ModelAttribute BoardDTO boardDTO ) throws IOException {
         boardService.boardSave(boardDTO);
         return "/index";
+    }
+
+    @GetMapping("/board")
+    public String board(Model model , @RequestParam("id")Long id){
+       BoardDTO boardDTO  = boardService.boardDetail(id);
+       model.addAttribute("board",boardDTO);
+        return "boardDetail";
     }
 }

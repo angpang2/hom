@@ -24,4 +24,8 @@ public class BoardRepository {
     public List<BoardDTO> boardList() {
       return sql.selectList("Board.boardList");
     }
+
+    public BoardDTO boardDetail(Long id) {
+        return sql.selectOne("Board.boardDetail",id);
+    }
 }
