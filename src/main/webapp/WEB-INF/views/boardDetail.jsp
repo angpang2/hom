@@ -34,6 +34,11 @@
                     <td width="5"><img src="img/table_right.gif" width="5" height="30" /></td>
                 </tr>
             </table>
+            <c:if test="${sessionScope.member.memberEmail !=null}">
+            <c:if test="${sessionScope.member.memberEmail eq board.boardWriter}">
+        <td><a href="/boardUpdate?id=${board.id}">글수정하기</a></td>
+        </c:if>
+        </c:if>
             <table>
                 <tr>
                     <td>&nbsp;</td>
@@ -61,11 +66,6 @@
                 <tr height="1" bgcolor="#82B5DF"><td colspan="4"></td></tr>
                 <tr align="center">
                     <td>&nbsp;</td>
-<c:if test="${sessionScope.member.memberEmail !=null}">
-    <c:if test="${sessionScope.member.memberEmail eq board.boardWriter}">
-    <td><a href="/boardUpdate?id=${board.id}">글수정하기</a></td>
-    </c:if>
-</c:if>
                     <td>&nbsp;</td>
                 </tr>
             </table>
