@@ -61,7 +61,7 @@
                     <td>&nbsp;</td>
 <c:if test="${sessionScope.member.memberEmail !=null}">
     <c:if test="${sessionScope.member.memberEmail eq board.boardWriter}">
-    <td><a href="/update?id=${board.id}">글수정하기</a></td>
+    <td><a href="/boardUpdate?id=${board.id}">글수정하기</a></td>
     </c:if>
 </c:if>
                     <td>&nbsp;</td>

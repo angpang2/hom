@@ -42,4 +42,25 @@ public class BoardController {
        model.addAttribute("board",boardDTO);
         return "boardDetail";
     }
+
+    @GetMapping("/boardUpdate")
+    public String boardUpdate(Model model , @RequestParam("id")Long id){
+        BoardDTO boardDTO  = boardService.boardDetail(id);
+        model.addAttribute("board",boardDTO);
+        return "/boardUpdate";
+    }
+
+
+    @PostMapping("/boardUpdate")
+    public String update(@ModelAttribute BoardDTO boardDTO){
+        boardService.boardUpdate(boardDTO);
+        return "redirect:/boardList";
+    }
+
+    @GetMapping("/boardDel")
+    public String del( @RequestParam("id")Long id){
+        boardService.boardDel(id);
+        return "redirect:/boardList";
+    }
+
 }

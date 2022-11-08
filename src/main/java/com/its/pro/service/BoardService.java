@@ -44,4 +44,12 @@ public class BoardService {
     public BoardDTO boardDetail(Long id) {
         return boardRepository.boardDetail(id);
     }
+
+    public void boardUpdate(BoardDTO boardDTO) {
+        boardRepository.boardUpdate(boardDTO);
+    }
+
+    public void boardDel(Long id) {
+        boardRepository.boardDel(id);
+    }
 }
