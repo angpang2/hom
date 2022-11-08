@@ -53,7 +53,8 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td align="center">내용</td>
-                    <td><textarea name="boardContents" cols="50" rows="13" type="text" readonly>${board.boardContents}</textarea></td>
+                    <td><textarea name="boardContents" cols="50" rows="13" type="text" readonly>${board.boardContents}
+                    </textarea></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>

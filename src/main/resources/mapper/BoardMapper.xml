@@ -15,6 +15,10 @@
         values (#{originalFileName} ,#{storedFileName} ,#{id})
     </insert>
 
+    <select id="file" parameterType="Long" resultType="board">
+        select * from board_file_table where boardId = #{id}
+    </select>
+
     <select id="boardList" resultType="board">
         select * from board_table
     </select>

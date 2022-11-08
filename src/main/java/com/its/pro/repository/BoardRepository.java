@@ -26,7 +26,14 @@ public class BoardRepository {
     }
 
     public BoardDTO boardDetail(Long id) {
-        return sql.selectOne("Board.boardDetail",id);
+        BoardDTO result = sql.selectOne("Board.boardDetail",id);
+        if(result.getFileAttached() == 1){
+            BoardDTO file = sql.selectOne("Board.file",id);
+            result.setStoredFileName(file.getStoredFileName());
+            return result;
+        }else {
+         return result;
+        }
     }
 
     public void boardUpdate(BoardDTO boardDTO) {
