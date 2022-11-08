@@ -52,4 +52,8 @@ public class BoardService {
     public void boardDel(Long id) {
         boardRepository.boardDel(id);
     }
+
+    public void boardup(Long id) {
+        boardRepository.boardup(id);
+    }
 }

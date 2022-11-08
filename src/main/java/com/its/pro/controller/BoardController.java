@@ -38,6 +38,7 @@ public class BoardController {
 
     @GetMapping("/board")
     public String board(Model model , @RequestParam("id")Long id){
+        boardService.boardup(id);
        BoardDTO boardDTO  = boardService.boardDetail(id);
        model.addAttribute("board",boardDTO);
         return "boardDetail";

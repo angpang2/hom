@@ -36,4 +36,8 @@ public class BoardRepository {
     public void boardDel(Long id) {
         sql.delete("Board.boardDel",id);
     }
+
+    public void boardup(Long id) {
+        sql.update("Board.boardUp",id);
+    }
 }
