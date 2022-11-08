@@ -83,7 +83,7 @@
 <div class="container mt-5">
     <div id="comment-write" class="input-group mb-3">
         <div class="form-floating">
-            <input type="text" id="commentWriter" class="form-control" placeholder="작성자">
+            <input type="text" id="commentWriter" class="form-control" placeholder="작성자" value="${sessionScope.member.memberEmail}" readonly>
             <label for="commentWriter">작성자</label>
         </div>
         <div class="form-floating">
@@ -118,9 +118,10 @@
 
 <script>
     const commentWrite = () => {
-        const writer = document.getElementById("commentWriter").value;
         const contents = document.getElementById("commentContents").value;
         const board = '${board.id}';
+        if(${sessionScope.member.memberEmail != null}){
+            const writer = '${sessionScope.member.memberEmail}'
         $.ajax({
             type: "post",
             url: "/comment/save",
@@ -153,7 +154,9 @@
             error: function () {
                 console.log("실패");
             }
-        });
+        });}else {
+            alert("로그인후 이용 가능합니다.")
+        }
     }
     const listFn = () => {
         const page = '${page}';
