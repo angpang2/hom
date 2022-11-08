@@ -4,7 +4,6 @@ import com.its.pro.DTO.MemberDTO;
 import com.its.pro.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -23,7 +22,7 @@ public class MemberController {
 
     @GetMapping("/save")
     public String savePage(){
-        return "savePage";
+        return "member/savePage";
     }
 
     @PostMapping("/save")
@@ -47,7 +46,7 @@ public class MemberController {
 
     @GetMapping("/login")
 public String login(){
-        return "loginPage";
+        return "member/loginPage";
     }
 
     @PostMapping("/loginCheck")

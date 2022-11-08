@@ -25,7 +25,7 @@
 </style>
 
 <body>
-<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
 <div class="container" id="login-form">
     <input type="text" name="memberEmail" placeholder="이메일입력" class="form-control" id="memberEmail">
@@ -52,7 +52,7 @@
             success : function (result){
                 if(result == "ok"){
                     alert("로그인성공")
-                    location.href = "/";
+                    location.href = "../../..";
                 }else {
                     alert("아이디 또는 비밀번호를 다시확인해주세요")
                 }

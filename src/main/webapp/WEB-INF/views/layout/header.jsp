@@ -16,7 +16,7 @@
 
 <style>
     #profile{
-        margin-left: 800px;
+        margin-left: 850px;
     }
 </style>
 
@@ -48,14 +48,14 @@
                         </c:when>
                         <c:otherwise>
                             <li><a href="/login">로그인</a></li>
+                            <li><a href="/save">회원가입</a></li>
                         </c:otherwise>
                     </c:choose>
-                <li><a href="/save">회원가입</a></li>
                 <c:if test="${sessionScope.member.memberEmail != null}">
                     <li><a href="/mypage">마이페이지</a></li>
                 </c:if>
                 <li><a href="#">장바구니</a></li>
-                <li><a href="#">고객센터</a></li>
+                <li><a href="/boardList">Q&A</a></li>
             </ul>
             <div id="h_btm"> <!--로고부분헤더-->
                 <h1><a href="#"><img src="/resources/img/mainlogo1.png" alt="도그쿡"></a></h1>
