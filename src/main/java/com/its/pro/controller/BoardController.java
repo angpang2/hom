@@ -26,9 +26,13 @@ public class BoardController {
 
     @GetMapping("/boardList")
     public String boardList(Model model , @RequestParam(value = "page",required = false,defaultValue = "1")int page){
-        List<BoardDTO>boardDTOList = boardService.boardList();
+        List<BoardDTO>boardDTOList = boardService.boardList(page);
         model.addAttribute("BoardList",boardDTOList);
        PageDTO pageDTO = boardService.boardPage(page);
+        System.out.println("pageDTO확인 = " + pageDTO);
+        model.addAttribute("paging",pageDTO);
+
+
         return "boardList";
     }
 

@@ -10,7 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BoardService {
@@ -37,8 +39,16 @@ public class BoardService {
     }
 
 
-    public List<BoardDTO> boardList() {
-        return boardRepository.boardList();
+    public List<BoardDTO> boardList(int page) {
+        int pagingStart = (page-1)*PagingConst.PAGE_LIMIT;
+        Map<String , Integer> pagingParams = new HashMap<>();
+        pagingParams.put("start",pagingStart);
+        pagingParams.put("limit",PagingConst.PAGE_LIMIT);
+        List<BoardDTO>pagingList = boardRepository.boardList(pagingParams);
+        return pagingList;
+
+
+
     }
 
     public BoardDTO boardDetail(Long id) {

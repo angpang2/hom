@@ -1,12 +1,12 @@
 package com.its.pro.repository;
 
 import com.its.pro.DTO.BoardDTO;
-import com.its.pro.DTO.PageDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BoardRepository {
@@ -22,8 +22,8 @@ public class BoardRepository {
         sql.insert("Board.saveFile",boardDTO);
     }
 
-    public List<BoardDTO> boardList() {
-      return sql.selectList("Board.boardList");
+    public List<BoardDTO> boardList(Map<String, Integer> pagingParams) {
+      return sql.selectList("Board.boardList",pagingParams);
     }
 
     public BoardDTO boardDetail(Long id) {
