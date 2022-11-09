@@ -15,6 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
 <div class="container" id="update-form">
     <form action="/update" method="post" name="up">

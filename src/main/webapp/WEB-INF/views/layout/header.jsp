@@ -43,6 +43,9 @@
                  <c:choose>
                         <c:when test="${sessionScope.member.memberEmail != null}">
                             <span>${sessionScope.member.memberEmail}님</span>
+                            <c:if test="${sessionScope.member.memberType == 1}">
+                                <li><a href="#">관리자 메뉴</a> </li>
+                            </c:if>
 
                             <li><a href="#"  onclick="con()">로그아웃</a> </li>
                         </c:when>
@@ -58,7 +61,7 @@
                 <li><a href="/boardList">Q&A</a></li>
             </ul>
             <div id="h_btm"> <!--로고부분헤더-->
-                <h1><a href="#"><img src="/resources/img/mainlogo1.png" alt="도그쿡"></a></h1>
+                <h1><a href="/"><img src="/resources/img/mainlogo1.png" alt="도그쿡"></a></h1>
                 <nav>
                     <div id="all_menu">
                         <a href="#"><img src="/resources/img/allmenu_icon.png" alt="menu"></a>

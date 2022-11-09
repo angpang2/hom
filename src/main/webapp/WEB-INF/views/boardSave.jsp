@@ -22,6 +22,7 @@
   </style>
 </head>
 <body>
+<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
 
 <div class="container" id="save-form" >
   <form action="/boardSave" method="post" name="saveForm"  class="form-control" enctype="multipart/form-data">
