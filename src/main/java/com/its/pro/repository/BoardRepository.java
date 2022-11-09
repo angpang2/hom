@@ -1,6 +1,7 @@
 package com.its.pro.repository;
 
 import com.its.pro.DTO.BoardDTO;
+import com.its.pro.DTO.PageDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -46,5 +47,9 @@ public class BoardRepository {
 
     public void boardup(Long id) {
         sql.update("Board.boardUp",id);
+    }
+
+    public int boardPage() {
+        return sql.selectOne("Board.boardCount");
     }
 }

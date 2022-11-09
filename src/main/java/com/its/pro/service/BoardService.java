@@ -1,9 +1,9 @@
 package com.its.pro.service;
 
 import com.its.pro.DTO.BoardDTO;
-import com.its.pro.DTO.MemberDTO;
+import com.its.pro.DTO.PageDTO;
+import com.its.pro.comons.PagingConst;
 import com.its.pro.repository.BoardRepository;
-import com.its.pro.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -55,5 +55,22 @@ public class BoardService {
 
     public void boardup(Long id) {
         boardRepository.boardup(id);
+    }
+
+    public PageDTO boardPage(int page) {
+       int pageCount = boardRepository.boardPage();
+       int maxPage = (int) (Math.ceil((double) pageCount / PagingConst.PAGE_LIMIT));
+        int startPage = (((int)(Math.ceil((double) page / PagingConst.BLOCK_LIMIT))) - 1) * PagingConst.BLOCK_LIMIT + 1;
+        int endPage = startPage + PagingConst.BLOCK_LIMIT - 1;
+        if(endPage>maxPage){
+            endPage = maxPage;
+        }
+        PageDTO pageDTO = new PageDTO();
+        pageDTO.setPage(page);
+        pageDTO.setMaxPage(maxPage);
+        pageDTO.setEndPage(endPage);
+        pageDTO.setStartPage(startPage);
+        return pageDTO;
+
     }
 }

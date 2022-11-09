@@ -2,6 +2,7 @@ package com.its.pro.controller;
 
 import com.its.pro.DTO.BoardDTO;
 import com.its.pro.DTO.CommentDTO;
+import com.its.pro.DTO.PageDTO;
 import com.its.pro.service.BoardService;
 import com.its.pro.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,10 @@ public class BoardController {
 
 
     @GetMapping("/boardList")
-    public String boardList(Model model){
+    public String boardList(Model model , @RequestParam(value = "page",required = false,defaultValue = "1")int page){
         List<BoardDTO>boardDTOList = boardService.boardList();
         model.addAttribute("BoardList",boardDTOList);
+       PageDTO pageDTO = boardService.boardPage(page);
         return "boardList";
     }
 
