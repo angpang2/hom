@@ -43,6 +43,10 @@
         select count(id) from board_table
     </select>
 
+    <update id="boardC" parameterType="Long">
+        update board_table set boardC = 1 where id = #{id}
+    </update>
+
 
 
 </mapper>

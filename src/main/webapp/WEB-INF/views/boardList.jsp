@@ -42,6 +42,9 @@
                 <td> ${board.boardHits}</td>
                 <td><fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate>
                 </td>
+                <c:if test="${board.boardC == 1}">  <td>Y</td></c:if>
+                <c:if test="${board.boardC == 0}">  <td>N</td></c:if>
+
             </tr>
 
 

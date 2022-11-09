@@ -31,6 +31,10 @@
         update member_table set memberName = #{memberName} ,  memberPassword = #{memberPassword} , memberAddress = #{memberAddress} , memberMobile =#{memberMobile}  where id = #{id}
     </update>
 
+    <select id="memberList" resultType="member">
+        select * from member_table
+    </select>
+
 
 
 

@@ -44,7 +44,7 @@
                         <c:when test="${sessionScope.member.memberEmail != null}">
                             <span>${sessionScope.member.memberEmail}님</span>
                             <c:if test="${sessionScope.member.memberType == 1}">
-                                <li><a href="#">관리자 메뉴</a> </li>
+                                <li><a href="/memberList">관리자 메뉴</a> </li>
                             </c:if>
 
                             <li><a href="#"  onclick="con()">로그아웃</a> </li>
