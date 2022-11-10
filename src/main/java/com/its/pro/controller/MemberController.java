@@ -83,6 +83,14 @@ public String login(){
         return "/member/memberList";
     }
 
+    @GetMapping("/memberDelete")
+    public String memberDelete(@RequestParam("id")Long id){
+        System.out.println(id);
+        memberService.memberDelete(id);
+
+        return "redirect:/memberList";
+    }
+
 
 
 

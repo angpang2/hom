@@ -56,6 +56,11 @@ public class MemberService {
     public List<MemberDTO> memberList() {
        return memberRepository.memberList();
     }
+
+    public void memberDelete(Long id) {
+        System.out.println(id);
+        memberRepository.memberDelete(id);
+    }
 }
 
 

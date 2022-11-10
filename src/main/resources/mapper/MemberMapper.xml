@@ -35,6 +35,10 @@
         select * from member_table
     </select>
 
+    <delete id="memberDelete" parameterType="Long">
+        delete from member_table where id = #{id}
+    </delete>
+
 
 
 
