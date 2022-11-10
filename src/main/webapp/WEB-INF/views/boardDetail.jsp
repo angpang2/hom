@@ -155,8 +155,10 @@
             error: function () {
                 console.log("실패");
             }
-        });}else {
+        })
+        }else {
             alert("로그인후 이용 가능합니다.")
+            location.href="/login"
         }
     }
     const listFn = () => {

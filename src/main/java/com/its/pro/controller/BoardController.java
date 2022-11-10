@@ -3,15 +3,13 @@ package com.its.pro.controller;
 import com.its.pro.DTO.BoardDTO;
 import com.its.pro.DTO.CommentDTO;
 import com.its.pro.DTO.PageDTO;
+import com.its.pro.comons.PagingConst;
 import com.its.pro.service.BoardService;
 import com.its.pro.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -76,5 +74,35 @@ public class BoardController {
         boardService.boardDel(id);
         return "redirect:/boardList";
     }
+
+    @GetMapping("/page")
+    public String page(@RequestParam("page")int page){
+        PagingConst.PAGE_LIMIT = page;
+        return "redirect:/boardList";
+
+    }
+
+
+
+    @GetMapping("/pageView")
+    public String boardList(Model model,@RequestParam(value = "page",required = false,defaultValue = "1")int page,
+     @RequestParam("PAGE_LIMIT")int PAGE_LIMIT){
+        List<BoardDTO>boardDTOList = boardService.boardList2(page,PAGE_LIMIT);
+        model.addAttribute("BoardList",boardDTOList);
+        PageDTO pageDTO = boardService.boardPage2(page,PAGE_LIMIT);
+        System.out.println("pageDTO확인 = " + pageDTO);
+        model.addAttribute("paging",pageDTO);
+        model.addAttribute("pageLimit",PAGE_LIMIT);
+
+
+        return "boardList";
+    }
+
+
+
+
+
+
+
 
 }

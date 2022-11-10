@@ -83,4 +83,31 @@ public class BoardService {
         return pageDTO;
 
     }
+
+    public List<BoardDTO> boardList2(int page, int page_limit) {
+        int pagingStart = (page-1)*page_limit;
+        Map<String , Integer> pagingParams = new HashMap<>();
+        pagingParams.put("start",pagingStart);
+        pagingParams.put("limit",page_limit);
+        List<BoardDTO>pagingList = boardRepository.boardList(pagingParams);
+        return pagingList;
+    }
+
+
+    public PageDTO boardPage2(int page, int page_limit) {
+        int pageCount = boardRepository.boardPage();
+        int maxPage = (int) (Math.ceil((double) pageCount / page_limit));
+        int startPage = (((int)(Math.ceil((double) page / PagingConst.BLOCK_LIMIT))) - 1) * PagingConst.BLOCK_LIMIT + 1;
+        int endPage = startPage + PagingConst.BLOCK_LIMIT - 1;
+        if(endPage>maxPage){
+            endPage = maxPage;
+        }
+        PageDTO pageDTO = new PageDTO();
+        pageDTO.setPage(page);
+        pageDTO.setMaxPage(maxPage);
+        pageDTO.setEndPage(endPage);
+        pageDTO.setStartPage(startPage);
+        return pageDTO;
+
+    }
 }

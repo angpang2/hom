@@ -43,7 +43,7 @@
   </div>
   <br><br><br>
 
-  <form enctype="multipart/form-data" method="post" action="/save">
+  <form enctype="multipart/form-data" method="post" action="/save" name="saveForm">
     <table>
       <tr>
         <td>이메일</td>
@@ -64,14 +64,15 @@
       <tr>
         <td>비밀번호</td>
         <td>
-          <input type="password" name="memberPassword" maxlength="20" class="form-control" id="memberPassword" onblur="passCheck()">
+          <input type="password" name="memberPassword" maxlength="20" class="form-control" id="memberPassword" onblur="passCheck2()">
+          <span id="pass_result2"></span>
         </td>
       </tr>
 
       <tr>
         <td>비밀번호 확인</td>
         <td>
-          <input type="password" name="memberPassword2" maxlength="20" class="form-control" onblur="passCheck()" id="memberPassword2">
+          <input type="password" name="memberPassword2" maxlength="20" class="form-control" onblur="passCheck()" id="memberPassword2"  disabled="">
           <span id="pass_result"></span>
         </td>
       </tr>
@@ -107,7 +108,7 @@
       </tr>
     </table>
     <br>
-    <input type="submit" value="가입" disabled id="submit"/>  <input type="button" value="취소">
+    <input type="button" value="가입" disabled id="submit1" onclick="save()">  <input type="button" value="취소" onclick="back()">
   </form>
 </div>
 </body>
@@ -125,11 +126,11 @@
         console.log("성공");
         console.log(result);
         if (result == "yes") {
-          $("#submit").removeAttr("disabled");
+          $("#submit1").removeAttr("disabled");
               alert("회원가입가능")
 
         } else {
-          $("#submit").attr("disabled", "disabled");
+          $("#submit1").attr("disabled", "disabled");
               alert("이미존재하는 이메일 입니다.")
 
         }
@@ -151,17 +152,65 @@
     if(pass1 == pass2){
       pass_result.innerHTML = "비밀번호가 일치합니다."
       pass_result.style.color = "green";
-      $("#submit").removeAttr("disabled");
+      $("#submit1").removeAttr("disabled");
     }else{
       pass_result.innerHTML = "비밀번호를 확인해주세요"
       pass_result.style.color = "red";
-      $("#submit").attr("disabled", "disabled");
+      $("#submit1").attr("disabled", "disabled");
+
     }
 
 
 
 
   }
+
+  const passCheck2 = () => {
+    const pass1 = document.getElementById("memberPassword").value;
+    const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
+    const pass_result2 = document.getElementById("pass_result2");
+    if (pass1.match(regExp)){
+      pass_result2.innerHTML = "사용할수있는 비밀번호 입니다."
+      pass_result2.style.color = "green";
+      $("#memberPassword2").attr("disabled",false);
+      $("#submit1").removeAttr("disabled");
+
+    }else {
+      pass_result2.innerHTML = "특수문자가를 포함해 주세요"
+      pass_result2.style.color = "red";
+      $("#submit1").attr("disabled", "disabled");
+      $("#memberPassword2").attr("disabled",true);
+    }
+
+  }
+
+  const back = () => {
+    location.href="/"
+  }
+
+
+  const save = () => {
+    const pass1 = document.getElementById("memberPassword").value;
+    const pass2 = document.getElementById("memberPassword2").value;
+    if(document.saveForm.memberEmail.value==""){
+      alert("이메일을 입력해 주세요")
+    }else if(document.saveForm.memberPassword.value==""){
+      alert("비밀번호를 입력해 주세요")
+    }else if(document.saveForm.memberName.value==""){
+      alert("이름을 입력해주세요")
+    }else if(document.saveForm.memberAddress.value==""){
+      alert("주소를 입력해 주세요")
+    }else if(document.saveForm.memberMobile.value==""){
+      alert("번화번호를 입력해 주세요")
+    }else if(pass1 != pass2){
+      alert("비밀번호를 확인해 주세요")
+    }
+   document.saveForm.submit();
+  }
+
+
+
+
 
 
 
