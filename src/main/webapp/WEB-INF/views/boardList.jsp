@@ -109,6 +109,14 @@
                 </select>
             </div>
 
+            <div>
+                <select name="selectView" onchange="selectView()" id="selectView">
+                    <option value="1" <c:if test="${select == '1'}">selected="selected"</c:if>> 최신순으로보기</option>
+                    <option value="2" <c:if test="${select == '2'}">selected="selected"</c:if>>조회수순으로보기</option>
+                </select>
+
+            </div>
+
 
 
 
@@ -138,30 +146,44 @@
     const pageView = () => {
         const sel = document.getElementById("pageSelect");
         const selectValue = sel.options[sel.selectedIndex].value;
-        location.href = "/pageView?PAGE_LIMIT="+selectValue;
+        const sel2 = document.getElementById("selectView");
+        const selectView = sel2.options[sel2.selectedIndex].value;
+        location.href = "/pageView?PAGE_LIMIT="+selectValue+"&selectView="+selectView;
 
     }
 
     const next = () => {
         const sel = document.getElementById("pageSelect");
         const selectValue = sel.options[sel.selectedIndex].value;
-        location.href= "/pageView?page="+'${paging.page+1}'+"&PAGE_LIMIT="+selectValue;
+        const sel2 = document.getElementById("selectView");
+        const selectView = sel2.options[sel2.selectedIndex].value;
+        location.href= "/pageView?page="+'${paging.page+1}'+"&PAGE_LIMIT="+selectValue+"&selectView="+selectView;
     }
 
     const Prev = () => {
         const sel = document.getElementById("pageSelect");
         const selectValue = sel.options[sel.selectedIndex].value;
-        location.href= "/pageView?page="+'${paging.page-1}'+"&PAGE_LIMIT="+selectValue;
+        const sel2 = document.getElementById("selectView");
+        const selectView = sel2.options[sel2.selectedIndex].value;
+        location.href= "/pageView?page="+'${paging.page-1}'+"&PAGE_LIMIT="+selectValue+"&selectView="+selectView;
     }
 
     const numberClick = (i) => {
         let num = i;
         const sel = document.getElementById("pageSelect");
         const selectValue = sel.options[sel.selectedIndex].value;
-        location.href= "/pageView?page="+num+"&PAGE_LIMIT="+selectValue;
+        const sel2 = document.getElementById("selectView");
+        const selectView = sel2.options[sel2.selectedIndex].value;
+        location.href= "/pageView?page="+num+"&PAGE_LIMIT="+selectValue+"&selectView="+selectView;
+    }
 
+    const selectView = () => {
+        const sel = document.getElementById("pageSelect");
+        const selectValue = sel.options[sel.selectedIndex].value;
+        const sel2 = document.getElementById("selectView");
+        const selectView = sel2.options[sel2.selectedIndex].value;
 
-
+        location.href= "/selectView?selectView="+selectView+"&PAGE_LIMIT="+selectValue;
 
     }
 

@@ -22,8 +22,12 @@ public class BoardRepository {
         sql.insert("Board.saveFile",boardDTO);
     }
 
-    public List<BoardDTO> boardList(Map<String, Integer> pagingParams) {
-      return sql.selectList("Board.boardList",pagingParams);
+    public List<BoardDTO> boardList(Map<String, Integer> pagingParams , int selectView) {
+        if(selectView == 1){
+            return sql.selectList("Board.boardList",pagingParams);
+        }else {
+            return sql.selectList("Board.boardList2",pagingParams);
+        }
     }
 
     public BoardDTO boardDetail(Long id) {
@@ -52,4 +56,18 @@ public class BoardRepository {
     public int boardPage() {
         return sql.selectOne("Board.boardCount");
     }
+
+    public List<BoardDTO> boardList2(Map<String, Integer> pagingParams,int selectView) {
+        if(selectView == 1){
+            return sql.selectList("Board.boardList",pagingParams);
+        }else {
+            return sql.selectList("Board.boardList2",pagingParams);
+        }
+
+    }
+
+
+
+
+
 }

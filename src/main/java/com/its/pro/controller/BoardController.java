@@ -23,8 +23,8 @@ public class BoardController {
 
 
     @GetMapping("/boardList")
-    public String boardList(Model model , @RequestParam(value = "page",required = false,defaultValue = "1")int page){
-        List<BoardDTO>boardDTOList = boardService.boardList(page);
+    public String boardList(Model model , @RequestParam(value = "page",required = false,defaultValue = "1")int page , @RequestParam(value = "selectView",required = false , defaultValue = "1")int selectView){
+        List<BoardDTO>boardDTOList = boardService.boardList(page,selectView);
         model.addAttribute("BoardList",boardDTOList);
        PageDTO pageDTO = boardService.boardPage(page);
         System.out.println("pageDTO확인 = " + pageDTO);
@@ -86,16 +86,32 @@ public class BoardController {
 
     @GetMapping("/pageView")
     public String boardList(Model model,@RequestParam(value = "page",required = false,defaultValue = "1")int page,
-     @RequestParam(value = "PAGE_LIMIT",required = false, defaultValue = "5")int PAGE_LIMIT){
-        List<BoardDTO>boardDTOList = boardService.boardList2(page,PAGE_LIMIT);
+     @RequestParam(value = "PAGE_LIMIT",required = false, defaultValue = "5")int PAGE_LIMIT ,@RequestParam(value = "selectView",required = false , defaultValue = "1")int selectView){
+        List<BoardDTO>boardDTOList = boardService.boardList2(page,PAGE_LIMIT ,selectView);
         model.addAttribute("BoardList",boardDTOList);
         PageDTO pageDTO = boardService.boardPage2(page,PAGE_LIMIT);
         System.out.println("pageDTO확인 = " + pageDTO);
         model.addAttribute("paging",pageDTO);
         model.addAttribute("pageLimit",PAGE_LIMIT);
-
-
+        model.addAttribute("select",selectView);
         return "boardList";
+    }
+
+    @GetMapping("selectView")
+        public String boardList2(Model model,@RequestParam(value = "page",required = false,defaultValue = "1")int page,
+        @RequestParam(value = "PAGE_LIMIT",required = false, defaultValue = "5")int PAGE_LIMIT , @RequestParam(value = "selectView",required = false , defaultValue = "1")int selectView){
+            List<BoardDTO>boardDTOList = boardService.boardList3(page,PAGE_LIMIT,selectView);
+            model.addAttribute("BoardList",boardDTOList);
+            PageDTO pageDTO = boardService.boardPage2(page,PAGE_LIMIT);
+            System.out.println("pageDTO확인 = " + pageDTO);
+            model.addAttribute("paging",pageDTO);
+            model.addAttribute("pageLimit",PAGE_LIMIT);
+            model.addAttribute("select",selectView);
+            return "boardList";
+        }
+
+
+
     }
 
 
@@ -105,4 +121,4 @@ public class BoardController {
 
 
 
-}
+

@@ -39,12 +39,12 @@ public class BoardService {
     }
 
 
-    public List<BoardDTO> boardList(int page) {
+    public List<BoardDTO> boardList(int page , int selectView) {
         int pagingStart = (page-1)*PagingConst.PAGE_LIMIT;
         Map<String , Integer> pagingParams = new HashMap<>();
         pagingParams.put("start",pagingStart);
         pagingParams.put("limit",PagingConst.PAGE_LIMIT);
-        List<BoardDTO>pagingList = boardRepository.boardList(pagingParams);
+        List<BoardDTO>pagingList = boardRepository.boardList(pagingParams,selectView);
         return pagingList;
 
 
@@ -84,12 +84,12 @@ public class BoardService {
 
     }
 
-    public List<BoardDTO> boardList2(int page, int page_limit) {
+    public List<BoardDTO> boardList2(int page, int page_limit,int selectView) {
         int pagingStart = (page-1)*page_limit;
         Map<String , Integer> pagingParams = new HashMap<>();
         pagingParams.put("start",pagingStart);
         pagingParams.put("limit",page_limit);
-        List<BoardDTO>pagingList = boardRepository.boardList(pagingParams);
+        List<BoardDTO>pagingList = boardRepository.boardList(pagingParams,selectView);
         return pagingList;
     }
 
@@ -110,4 +110,17 @@ public class BoardService {
         return pageDTO;
 
     }
+    public List<BoardDTO> boardList3(int page, int page_limit , int selectView) {
+        int pagingStart = (page-1)*page_limit;
+        Map<String , Integer> pagingParams = new HashMap<>();
+        pagingParams.put("start",pagingStart);
+        pagingParams.put("limit",page_limit);
+        List<BoardDTO>pagingList = boardRepository.boardList2(pagingParams,selectView);
+        return pagingList;
+    }
+
+
+
+
+
 }

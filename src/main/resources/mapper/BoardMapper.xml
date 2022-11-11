@@ -47,6 +47,10 @@
         update board_table set boardC = 1 where id = #{id}
     </update>
 
+    <select id="boardList2" resultType="board" parameterType="java.util.HashMap">
+        select * from board_table order by boardHits desc limit #{start} , #{limit}
+    </select>
+
 
 
 </mapper>
