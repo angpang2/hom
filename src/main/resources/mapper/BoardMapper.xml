@@ -51,6 +51,10 @@
         select * from board_table order by boardHits desc limit #{start} , #{limit}
     </select>
 
+    <select id="search" parameterType="java.util.HashMap" resultType="board">
+        select * from board_table where ${type} like concat('%',#{q},'%') order by id desc
+    </select>
+
 
 
 </mapper>

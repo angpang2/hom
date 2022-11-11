@@ -66,6 +66,10 @@ public class BoardRepository {
 
     }
 
+    public List<BoardDTO> search(Map<String, String> searchParams) {
+        return sql.selectList("Board.search",searchParams);
+    }
+
 
 
 

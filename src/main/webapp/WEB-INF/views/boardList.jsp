@@ -117,6 +117,15 @@
 
             </div>
 
+            <div class="input-group">
+                <select name="type" class="form-select" id="type">
+                    <option value="boardTitle" selected>제목</option>
+                    <option value="boardWriter">작성자</option>
+                </select>
+                <input type="search" name="q"  placeholder="검색어를 입력하세요" id="search">
+                <input type="button" value="검색" onclick="searched()">
+            </div>
+
 
 
 
@@ -184,6 +193,19 @@
         const selectView = sel2.options[sel2.selectedIndex].value;
 
         location.href= "/selectView?selectView="+selectView+"&PAGE_LIMIT="+selectValue;
+
+    }
+
+    const searched = () => {
+        const sel = document.getElementById("pageSelect");
+        const selectValue = sel.options[sel.selectedIndex].value;
+        const sel2 = document.getElementById("selectView");
+        const selectView = sel2.options[sel2.selectedIndex].value;
+        const sel3 = document.getElementById("type");
+        const selectType= sel3.options[sel3.selectedIndex].value;
+        const sel4 = document.getElementById("search").value;
+
+        location.href= "/search?selectView="+selectView+"&PAGE_LIMIT="+selectValue+"&type="+selectType+"&q="+sel4;
 
     }
 

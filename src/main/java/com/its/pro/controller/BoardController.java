@@ -90,7 +90,6 @@ public class BoardController {
         List<BoardDTO>boardDTOList = boardService.boardList2(page,PAGE_LIMIT ,selectView);
         model.addAttribute("BoardList",boardDTOList);
         PageDTO pageDTO = boardService.boardPage2(page,PAGE_LIMIT);
-        System.out.println("pageDTO확인 = " + pageDTO);
         model.addAttribute("paging",pageDTO);
         model.addAttribute("pageLimit",PAGE_LIMIT);
         model.addAttribute("select",selectView);
@@ -103,12 +102,22 @@ public class BoardController {
             List<BoardDTO>boardDTOList = boardService.boardList3(page,PAGE_LIMIT,selectView);
             model.addAttribute("BoardList",boardDTOList);
             PageDTO pageDTO = boardService.boardPage2(page,PAGE_LIMIT);
-            System.out.println("pageDTO확인 = " + pageDTO);
             model.addAttribute("paging",pageDTO);
             model.addAttribute("pageLimit",PAGE_LIMIT);
             model.addAttribute("select",selectView);
             return "boardList";
         }
+
+    @GetMapping("/search")
+    public String search(@RequestParam("type")String type,@RequestParam("q")String q , Model model ,@RequestParam(value = "page",required = false,defaultValue = "1")int page,
+                         @RequestParam(value = "PAGE_LIMIT",required = false, defaultValue = "5")int PAGE_LIMIT , @RequestParam(value = "selectView",required = false , defaultValue = "1")int selectView){
+
+        List<BoardDTO>searchList = boardService.search(type,q);
+        model.addAttribute("BoardList",searchList);
+        model.addAttribute("pageLimit",PAGE_LIMIT);
+        model.addAttribute("select",selectView);
+        return "boardList";
+    }
 
 
 
