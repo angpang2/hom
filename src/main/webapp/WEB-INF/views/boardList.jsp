@@ -63,7 +63,7 @@
             <%-- 1페이지가 아닌 경우에는 [이전]을 클릭하면 현재 페이지보다 1 작은 페이지 요청 --%>
         <c:otherwise>
         <li class="page-item">
-            <a class="page-link" href="/boardList?page=${paging.page-1}">[이전]</a>
+            <a class="page-link" onclick="Prev()">[이전]</a>
         </li>
         </c:otherwise>
         </c:choose>
@@ -80,7 +80,7 @@
 
         <c:otherwise>
         <li class="page-item">
-            <a class="page-link" href="/boardList?page=${i}">${i}</a>
+            <a class="page-link" onclick="numberClick(${i})">${i}</a>
         </li>
         </c:otherwise>
         </c:choose>
@@ -94,13 +94,13 @@
         </c:when>
         <c:otherwise>
         <li class="page-item">
-            <a class="page-link" href="/boardList?page=${paging.page+1}">[다음]</a>
+            <a class="page-link" onclick="next()">[다음]</a>
         </li>
         </c:otherwise>
         </c:choose>
             <div>
                 <select name="pageSelect" onchange="pageView()" id="pageSelect">
-                    <option value="0" <c:if test="${pageLimit == '0'}">selected="selected"</c:if>>게시물보기</option>
+                    <option value="5" <c:if test="${pageLimit == '5'}">selected="selected"</c:if>>게시물보기</option>
                     <option value="1" <c:if test="${pageLimit == '1'}">selected="selected"</c:if>>1개</option>
                     <option value="2" <c:if test="${pageLimit == '2'}">selected="selected"</c:if>>2개</option>
                     <option value="3" <c:if test="${pageLimit == '3'}">selected="selected"</c:if>>3개</option>
@@ -139,6 +139,29 @@
         const sel = document.getElementById("pageSelect");
         const selectValue = sel.options[sel.selectedIndex].value;
         location.href = "/pageView?PAGE_LIMIT="+selectValue;
+
+    }
+
+    const next = () => {
+        const sel = document.getElementById("pageSelect");
+        const selectValue = sel.options[sel.selectedIndex].value;
+        location.href= "/pageView?page="+'${paging.page+1}'+"&PAGE_LIMIT="+selectValue;
+    }
+
+    const Prev = () => {
+        const sel = document.getElementById("pageSelect");
+        const selectValue = sel.options[sel.selectedIndex].value;
+        location.href= "/pageView?page="+'${paging.page-1}'+"&PAGE_LIMIT="+selectValue;
+    }
+
+    const numberClick = (i) => {
+        let num = i;
+        const sel = document.getElementById("pageSelect");
+        const selectValue = sel.options[sel.selectedIndex].value;
+        location.href= "/pageView?page="+num+"&PAGE_LIMIT="+selectValue;
+
+
+
 
     }
 

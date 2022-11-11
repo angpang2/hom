@@ -86,7 +86,7 @@ public class BoardController {
 
     @GetMapping("/pageView")
     public String boardList(Model model,@RequestParam(value = "page",required = false,defaultValue = "1")int page,
-     @RequestParam("PAGE_LIMIT")int PAGE_LIMIT){
+     @RequestParam(value = "PAGE_LIMIT",required = false, defaultValue = "5")int PAGE_LIMIT){
         List<BoardDTO>boardDTOList = boardService.boardList2(page,PAGE_LIMIT);
         model.addAttribute("BoardList",boardDTOList);
         PageDTO pageDTO = boardService.boardPage2(page,PAGE_LIMIT);
